@@ -1,7 +1,7 @@
 package com.example.video_server.service.impl;
 
 import com.example.video_server.common.entity.ResultBean;
-import com.example.video_server.common.entity.VideoFile;
+import com.example.video_server.common.entity.VideoPath;
 import com.example.video_server.common.entity.enums.ResultEnum;
 import com.example.video_server.service.VideoService;
 import lombok.extern.log4j.Log4j2;
@@ -74,10 +74,11 @@ public class VideoServiceImpl implements VideoService {
             file.transferTo(upload);
             String newFileName= UUID.randomUUID() + ".m3u8";//剪切后生成的m3u8的文件名
             log.info("文件接收成功，存储路径：{}",input_file_path+fileName);
-            VideoFile videoFile=new VideoFile(input_file_path+fileName
-                    ,out_file_path+"cessssss/","123.m3u8");
-            VideoCuttingService.ConvertVideo(videoFile);
-            return ResultBean.success("cessssss/1.m3u8");
+            /*TODO:文件输出路径应进行判断是否存在，不存在则创建*/
+            VideoPath videoPath=new VideoPath(input_file_path+fileName
+                    ,out_file_path+"ceshi1"+"/","ceshi2");
+            VideoCuttingService.ConvertVideo(videoPath);
+            return ResultBean.success("ceshi1"+"/"+videoPath.getNewFileName());
         } catch (IOException e) {
             e.printStackTrace();
             return ResultBean.error(ResultEnum.UPLOAD_ERROR);

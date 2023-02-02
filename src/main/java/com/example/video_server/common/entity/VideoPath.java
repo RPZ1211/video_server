@@ -11,12 +11,15 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VideoFile {
+public class VideoPath {
 
-    private String oldFilePath;
+    @ApiModelProperty(value = "待解析文件路径")
+    private String inputPath;
 
-    private String newFilePath;
+    @ApiModelProperty(value = "文件输出路径,不包含文件名称")
+    private String outPath;
 
+    @ApiModelProperty(value = "输出文件名称,默认后缀.m3u8")
     private String newFileName;
 
 }
